@@ -402,3 +402,46 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Add 3D tilt to the hero profile card (VLM suggested this)
 - Add a subtle "scanline" or "glitch" effect on the hero name for tech aesthetic
 - Consider adding a mini "music player" mock widget for the "now playing" card
+
+---
+Task ID: 9
+Agent: webDevReview cron (round 7)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–8): portfolio stable, polish ~9/10, particle hero + scroll-animated stats + keyboard help + 404 + NowWidget + parallax orbs + resume modal + command palette all working
+- QA via agent-browser: page loads `GET / 200`, no console errors/warnings, all 11 sections + canvas particle + command palette badge + keyboard help badge confirmed
+- VLM hero analysis: particles visible, profile card has glassmorphism depth, name has gradient; suggested 3D tilt on profile card + glitch effect on heading
+
+New features added:
+1. **3D TiltCard on hero profile card** — wrapped the hero's floating profile card in the existing `TiltCard` component (max 7° rotation, spring physics, perspective 1200px, preserve-3d). The card now tilts following the mouse while continuing its gentle y-axis bobbing animation. Combined with the glassmorphism + glow, it feels like a physical object floating in 3D space.
+2. **GlitchText** (`glitch-text.tsx`) — RGB-split glitch effect on the hero name "Akil S". Two pseudo layers (emerald + teal) with clip-path animations that trigger periodically (every 3.5–7.5s random) and on hover, creating a subtle "digital glitch" burst (200ms). The effect uses CSS `@keyframes glitch-clip` + `glitch-shift` for the layers, with `prefers-reduced-motion` fallback (disables animation). Verified: `.glitch-text` with 2 `.glitch-layer` elements present in DOM.
+3. **Mini music player equalizer** in the NowWidget — the "Now playing" card now has an animated 5-bar equalizer (emerald vertical bars with staggered height animation, 0.9s+ per bar, infinite loop) on the right side. Refactored NowWidget with a `kind` field per item and a dedicated `Equalizer` component that renders only for the "playing" card. Verified: 5 equalizer bars present, VLM confirmed animated equalizer visible.
+
+Styling improvements:
+- Hero profile card now has interactive 3D tilt on mouse move
+- Hero name has a periodic + hover-triggered RGB glitch effect for tech aesthetic
+- Now playing card has a "live" animated equalizer for extra warmth
+- All new animations respect `prefers-reduced-motion` (CSS fallback)
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200`
+- agent-browser: GlitchText (2 RGB layers), 5-bar equalizer in now-playing card, all features still present
+- VLM About section: confirmed 3 status cards + animated equalizer, polish 9/10
+
+Stage Summary:
+- 3 new features: 3D tilt on hero profile card, GlitchText on hero name, mini equalizer on now-playing card (1 new component file + 2 integrations + CSS keyframes)
+- Hero now has: particles + 3D tilt card + glitch name — a full "tech-forward" wow stack
+- NowWidget feels alive with the animated equalizer on the music card
+- All verified working end-to-end, no console errors, lint clean
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Light/dark theme toggle (still the largest deferred item)
+- Replace AI-generated project images with real UI mockups (needs Akil's actual screenshots)
+- Add a "blog/notes" or "learning log" section (needs content source)
+- Add testimonials/endorsements if Akil gets real quotes
+- Consider a /api/og dynamic OG image route for per-section sharing
+- Add particle connection lines (constellation effect) when particles are close together
+- Add a "project case study" modal with deeper detail for each project
+- Consider a subtle cursor-following glow on the whole page

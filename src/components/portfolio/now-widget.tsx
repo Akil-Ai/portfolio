@@ -5,9 +5,9 @@ import { Music, BookOpen, Hammer } from "lucide-react";
 import { nowStatus } from "@/lib/portfolio-data";
 
 const items = [
-  { ...nowStatus.playing, icon: Music, accent: "emerald" },
-  { ...nowStatus.reading, icon: BookOpen, accent: "teal" },
-  { ...nowStatus.building, icon: Hammer, accent: "amber" },
+  { ...nowStatus.playing, icon: Music, accent: "emerald", kind: "playing" },
+  { ...nowStatus.reading, icon: BookOpen, accent: "teal", kind: "reading" },
+  { ...nowStatus.building, icon: Hammer, accent: "amber", kind: "building" },
 ];
 
 const accentMap: Record<string, { text: string; bg: string; ring: string }> = {
@@ -25,6 +25,7 @@ export function NowWidget() {
     <div className="grid gap-3 sm:grid-cols-3">
       {items.map((item, i) => {
         const a = accentMap[item.accent] ?? accentMap.emerald;
+        const isPlaying = item.kind === "playing";
         return (
           <motion.div
             key={item.label}
@@ -50,9 +51,38 @@ export function NowWidget() {
                 {"artist" in item ? item.artist : item.detail}
               </div>
             </div>
+            {/* Mini music player: animated equalizer for the "now playing" card */}
+            {isPlaying && <Equalizer accent={item.accent} />}
           </motion.div>
         );
       })}
+    </div>
+  );
+}
+
+function Equalizer({ accent }: { accent: string }) {
+  const color =
+    accent === "emerald"
+      ? "bg-emerald-400"
+      : accent === "teal"
+        ? "bg-teal-400"
+        : "bg-amber-400";
+  return (
+    <div className="flex h-8 items-end gap-0.5 px-1" aria-hidden>
+      {[0.2, 0.5, 0.8, 0.4, 0.6].map((delay, i) => (
+        <motion.span
+          key={i}
+          className={`w-0.5 rounded-full ${color}`}
+          animate={{ height: ["20%", "100%", "40%", "80%", "30%"] }}
+          transition={{
+            duration: 0.9 + i * 0.1,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay,
+          }}
+          style={{ height: "40%" }}
+        />
+      ))}
     </div>
   );
 }

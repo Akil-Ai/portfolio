@@ -21,6 +21,8 @@ import { AnimatedCounter } from "./animated-counter";
 import { Typewriter } from "./typewriter";
 import { ResumePreviewModal } from "./resume-preview-modal";
 import { ParticleField } from "./particle-field";
+import { TiltCard } from "./tilt-card";
+import { GlitchText } from "./glitch-text";
 
 const rotatingRoles = [
   "AI & Data Science Student",
@@ -65,9 +67,12 @@ export function Hero() {
               className="mt-5 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
               Hi, I&apos;m{" "}
-              <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+              <GlitchText
+                as="span"
+                className="bg-gradient-to-r from-emerald-300 via-teal-300 to-emerald-400 bg-clip-text text-transparent"
+              >
                 {profile.name}
-              </span>
+              </GlitchText>
             </motion.h1>
 
             {/* Rotating role with typewriter */}
@@ -180,10 +185,12 @@ export function Hero() {
             className="relative mx-auto w-full max-w-sm"
           >
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-emerald-500/30 via-teal-500/20 to-transparent blur-2xl" />
+            <TiltCard max={7} className="[perspective:1200px]">
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
+              style={{ transformStyle: "preserve-3d" }}
             >
               <div className="flex items-center gap-4">
                 <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 text-2xl font-bold text-white shadow-lg shadow-emerald-900/40">
@@ -225,6 +232,7 @@ export function Hero() {
                 ))}
               </div>
             </motion.div>
+            </TiltCard>
           </motion.div>
         </div>
 
