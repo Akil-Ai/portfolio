@@ -161,3 +161,56 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Add page-load entrance animation for the whole page
 - Consider adding a subtle noise texture overlay for premium feel
 - Add `prefers-reduced-motion` support to disable heavy animations for accessibility
+
+---
+Task ID: 4
+Agent: webDevReview cron (round 2)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–3): portfolio + chatbot stable, polish 9/10, content-visibility bug already fixed in round 1
+- QA via agent-browser (desktop + 375px mobile viewport):
+  - Page loads `GET / 200`, no console errors, chatbot POST /api/chat returns 200
+  - All 9 sections present + 7 dividers + marquee confirmed via DOM eval
+  - Mobile horizontal overflow check: scrollWidth (375) == clientWidth (375) → NO overflow (VLM had misread animated marquee)
+- VLM mobile audit flagged: skills tag cloud too dense on mobile, chatbot button margin, contact input padding, cert card hover missing
+
+Fixes applied (mobile + polish):
+- Skills tag cloud: increased gap (gap-2.5 sm:gap-3) and font size step on larger screens; added hover bg fill
+- Chatbot launcher button: adjusted bottom margin (bottom-6 right-4 mobile, sm:bottom-7 sm:right-7 desktop) to avoid footer overlap
+- Certification cards: added `whileHover={{ y: -4 }}` lift micro-interaction + emerald border + shadow on hover; improved issuer text contrast (slate-400 → slate-300)
+- Added `prefers-reduced-motion` CSS — disables all animations/transitions for accessibility
+- Added custom emerald-teal gradient scrollbar styling
+- Added emerald selection color
+- Added `scroll-behavior: smooth` with reduced-motion fallback
+
+New features added:
+1. **Experience section** (`experience.tsx`) — NEW major section surfacing the AI Intern role at Codec Technologies (AICTE & ICAC approved), the Salesforce Agentblazer Champion 2026 program, and the NASSCOM IoT Silver training. Timeline layout matching Education, with accent-colored type chips, highlight checklists, hover lift, and a "Looking for my next opportunity" CTA connecting to LinkedIn. Added to navItems and page.tsx.
+2. **MarqueeStrip** (`marquee-strip.tsx`) — infinite scrolling skills strip (Python, ML, Data Science, NLP, Gen AI, etc.) right after hero, with dot separators and faded edges. Linear infinite loop, respects reduced-motion.
+3. **Section dividers** — gradient emerald→teal→transparent divider lines between all sections via `.section-divider` CSS class + reusable `<Divider />` component for visual rhythm.
+4. **Noise texture overlay** — subtle SVG fractalNoise grain (opacity 0.035) applied via `.noise-overlay::before` for premium non-flat aesthetic.
+5. **Experience data model** in portfolio-data.ts: new `experiences[]` array with role, org, type, description, highlights, icon, accent.
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200` + `POST /api/chat 200`
+- agent-browser DOM: 9 sections + marquee + 7 dividers all present
+- VLM desktop: confirmed Experience section, marquee strip, gradient dividers, noise texture all visible — polish 9/10
+- VLM mobile: Experience cards stack vertically correctly (timeline line is intentional design); marquee renders with no horizontal overflow (verified via scrollWidth=clientWidth DOM check)
+- Chatbot re-tested: asked "Tell me about Akil's internship experience" → accurate answer referencing Codec Technologies AICTE internship + openness to online internships
+
+Stage Summary:
+- 2 new major UI features: Experience section + MarqueeStrip (3 new component files: experience.tsx, marquee-strip.tsx + Divider)
+- 4 styling upgrades: prefers-reduced-motion accessibility, custom scrollbar, section dividers, noise texture
+- Mobile polish: tag cloud spacing, chatbot button margin, cert card lift hover
+- Portfolio now has 9 distinct sections (Hero, About, Education, Skills, Projects, Experience, Certifications, Achievements, Contact)
+- All verified working end-to-end, no console errors, lint clean
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Footer copyright text contrast could be bumped up slightly (VLM flagged)
+- Currently Learning progress bars could get a subtle animated shimmer for "living" feel
+- Contact form input touch targets could be slightly larger on mobile (<480px)
+- Consider a light/dark theme toggle (still requires converting hardcoded slate classes to CSS vars — significant effort, deferred)
+- Add a subtle entrance animation for the whole page on first load
+- Consider adding a "fun facts" or "beyond work" personal section for warmth
+- Add JSON-LD structured data (Person schema) for SEO

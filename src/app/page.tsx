@@ -4,16 +4,26 @@ import { About } from "@/components/portfolio/about";
 import { Education } from "@/components/portfolio/education";
 import { Skills } from "@/components/portfolio/skills";
 import { Projects } from "@/components/portfolio/projects";
+import { Experience } from "@/components/portfolio/experience";
 import { Certifications } from "@/components/portfolio/certifications";
 import { Achievements } from "@/components/portfolio/achievements";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
 import { ScrollProgress } from "@/components/portfolio/scroll-progress";
+import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
 import { ChatbotWidget } from "@/components/chatbot-widget";
+
+function Divider() {
+  return (
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="section-divider" aria-hidden />
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen flex-col bg-slate-950 text-slate-100">
+    <div className="noise-overlay relative flex min-h-screen flex-col bg-slate-950 text-slate-100">
       {/* Global decorative background */}
       <div className="pointer-events-none fixed inset-0 -z-50">
         <div className="absolute inset-0 bg-slate-950" />
@@ -24,12 +34,21 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <MarqueeStrip />
         <About />
+        <Divider />
         <Education />
+        <Divider />
         <Skills />
+        <Divider />
         <Projects />
+        <Divider />
+        <Experience />
+        <Divider />
         <Certifications />
+        <Divider />
         <Achievements />
+        <Divider />
         <Contact />
       </main>
       <Footer />

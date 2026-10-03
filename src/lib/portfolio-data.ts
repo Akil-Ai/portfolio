@@ -55,6 +55,7 @@ export const navItems: NavItem[] = [
   { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
   { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
@@ -110,6 +111,65 @@ export const education: EducationItem[] = [
     period: "2021 — 2024",
     detail: "Achieved distinction in secondary schooling, ranking among top performers.",
     icon: School,
+  },
+];
+
+export type ExperienceItem = {
+  role: string;
+  org: string;
+  period: string;
+  type: "Internship" | "Training" | "Program";
+  description: string;
+  highlights: string[];
+  icon: LucideIcon;
+  accent: string;
+};
+
+export const experiences: ExperienceItem[] = [
+  {
+    role: "Artificial Intelligence Intern",
+    org: "Codec Technologies Pvt. Ltd.",
+    period: "Internship",
+    type: "Internship",
+    description:
+      "Selected for an AICTE & ICAC-approved AI internship, applying classroom machine-learning concepts to real industry workflows and datasets.",
+    highlights: [
+      "AICTE & ICAC approved — industry-recognised program",
+      "Hands-on exposure to applied AI and ML pipelines",
+      "Bridged academic theory with real-world problem solving",
+    ],
+    icon: Bot,
+    accent: "emerald",
+  },
+  {
+    role: "Agentblazer Champion 2026",
+    org: "Salesforce — AI Agentforce Skills",
+    period: "Program",
+    type: "Program",
+    description:
+      "Recognised as a Salesforce Agentblazer Champion, building practical skills around AI Agentforce and the next generation of autonomous AI agents.",
+    highlights: [
+      "Champion-tier recognition from Salesforce",
+      "Specialised in AI agent development workflows",
+      "Early adopter of Agentforce 2026 skills",
+    ],
+    icon: Sparkles,
+    accent: "amber",
+  },
+  {
+    role: "IoT & Digital Transformation (Silver)",
+    org: "NASSCOM FutureSkills Prime",
+    period: "Training",
+    type: "Training",
+    description:
+      "Completed Silver-category training on the Internet of Things and digital transformation, understanding how connected devices reshape industries.",
+    highlights: [
+      "Silver category — NASSCOM FutureSkills Prime",
+      "IoT architecture & digital transformation strategy",
+      "Sensor data to cloud pipelines",
+    ],
+    icon: Globe,
+    accent: "teal",
   },
 ];
 

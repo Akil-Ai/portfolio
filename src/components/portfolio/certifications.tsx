@@ -45,7 +45,8 @@ export function Certifications() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="group relative flex h-full items-start gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition hover:border-white/20 hover:bg-white/[0.07]"
+                whileHover={{ y: -4 }}
+                className="group relative flex h-full items-start gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition hover:border-emerald-400/40 hover:bg-white/[0.07] hover:shadow-lg hover:shadow-emerald-900/10"
               >
                 <div
                   className={cn(
@@ -61,7 +62,7 @@ export function Certifications() {
                   <h3 className="text-sm font-semibold leading-snug text-white">
                     {c.title}
                   </h3>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-400">
+                  <p className="mt-1 text-xs leading-relaxed text-slate-300">
                     {c.issuer}
                   </p>
                 </div>

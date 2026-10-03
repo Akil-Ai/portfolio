@@ -118,7 +118,7 @@ export function ChatbotWidget() {
       <motion.button
         aria-label="Open AKIL Bot chat"
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-900/40 ring-2 ring-white/20 transition hover:scale-105 hover:shadow-emerald-700/50 sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
+        className="fixed bottom-6 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-900/40 ring-2 ring-white/20 transition hover:scale-105 hover:shadow-emerald-700/50 sm:bottom-7 sm:right-7 sm:h-16 sm:w-16"
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.94 }}
       >

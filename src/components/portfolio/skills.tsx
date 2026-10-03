@@ -100,7 +100,7 @@ export function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-8 flex flex-wrap justify-center gap-2.5"
+          className="mt-8 flex flex-wrap justify-center gap-2.5 sm:gap-3"
         >
           {[
             "Python",
@@ -120,7 +120,7 @@ export function Skills() {
           ].map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-white/10 bg-slate-950/40 px-3.5 py-1.5 text-xs font-medium text-slate-300 transition hover:border-emerald-400/40 hover:text-emerald-200"
+              className="rounded-full border border-white/10 bg-slate-950/40 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-emerald-400/40 hover:bg-emerald-500/10 hover:text-emerald-200 sm:px-3.5 sm:text-[13px]"
             >
               {tag}
             </span>
