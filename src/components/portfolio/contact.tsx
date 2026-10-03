@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SectionHeading } from "./section-heading";
+import { ShareButton } from "./share-button";
 import { contactLinks, profile } from "@/lib/portfolio-data";
 import { toast } from "sonner";
 
@@ -104,6 +105,11 @@ export function Contact() {
                     </div>
                   </a>
                 ))}
+              </div>
+
+              {/* Share profile */}
+              <div className="mt-5 border-t border-white/10 pt-4">
+                <ShareButton />
               </div>
             </div>
           </motion.div>

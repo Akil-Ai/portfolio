@@ -16,6 +16,7 @@ import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
 import { CommandPalette } from "@/components/portfolio/command-palette";
 import { KeyboardHelp } from "@/components/portfolio/keyboard-help";
 import { TerminalEasterEgg } from "@/components/portfolio/terminal-easter-egg";
+import { KonamiEasterEgg } from "@/components/portfolio/konami-easter-egg";
 import { AnimatedBackground } from "@/components/portfolio/animated-background";
 import { CursorGlow } from "@/components/portfolio/cursor-glow";
 import { PageEntrance } from "@/components/portfolio/page-entrance";
@@ -77,6 +78,8 @@ export default function Home() {
       <KeyboardHelp />
       {/* Terminal easter egg (press 't') */}
       <TerminalEasterEgg />
+      {/* Konami code easter egg (↑↑↓↓←→←→BA) */}
+      <KonamiEasterEgg />
     </div>
   );
 }
