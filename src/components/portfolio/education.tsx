@@ -24,8 +24,7 @@ export function Education() {
               <motion.div
                 key={item.degree}
                 initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
                 className="relative pl-14"
               >

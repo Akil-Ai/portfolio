@@ -107,3 +107,57 @@ Unresolved / Next-phase recommendations:
 - Add a "now playing / currently learning" widget
 - Add typing-animation on hero tagline
 - Consider storing chatbot conversations in Prisma for analytics
+
+---
+Task ID: 3
+Agent: webDevReview cron (round 1)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read existing worklog (Tasks 1 & 2) — portfolio + chatbot already built and functional
+- QA via agent-browser: page loads (GET / 200), all 8 sections + footer present, chatbot returns accurate answers, mobile toggle detected, no runtime errors
+- VLM screenshot analysis (hero + full page) identified critical bug + polish issues:
+  - CRITICAL: `whileInView` framer-motion animations kept below-fold content at opacity:0 in full-page screenshots (and until user scrolls) — caused the full page to look ~80% empty
+  - Body text contrast too low (slate-400 on slate-950)
+  - Avatar Sparkles badge looked like an accidental overlap/artifact
+  - Footer felt cramped
+
+Fixes applied:
+- Converted ALL `whileInView` → on-mount `animate` across 7 section files (section-heading, about, education, skills, projects, certifications, achievements, contact) — content is now always visible regardless of scroll/screenshot
+- Improved text contrast: slate-400 → slate-300 for body text, descriptions, contact labels, placeholders (slate-500 → slate-400)
+- Cleaned hero avatar (removed artifact-like Sparkles badge, kept clean gradient avatar with subtle pulse dot)
+- Added `h-full` to certification cards for consistent grid heights
+- Increased footer top spacing (mt-20, py-12/14) for breathing room
+
+New features added:
+1. **AnimatedCounter** (`animated-counter.tsx`) — hero stats now count up from 0 on mount (CGPA 8.21, SSLC 90.6, HSC 87, 7+ certs)
+2. **Typewriter** (`typewriter.tsx`) — hero now shows a rotating role ("AI & Data Science Student" → "Python Problem-Solver" → "ML Enthusiast" → "Test Automation Builder" → "Future Intern") with blinking cursor
+3. **Download Resume button** in hero — copies resume PDF to `/public/Akil-S-Resume.pdf`, wired with `download` attribute
+4. **"Currently Learning" widget** in About section — live progress bars for ML (72%), Deep Learning (58%), Data Structures (80%), Generative AI (65%) with pulsing "Live" indicator
+5. **TiltCard** (`tilt-card.tsx`) — 3D mouse-tracking tilt on project cards (rotateX/rotateY with spring physics) + animated gradient glow border on hover + translateZ depth on image
+6. **ScrollProgress** (`scroll-progress.tsx`) — thin emerald→teal gradient bar at top of viewport that fills as you scroll (useScroll + useSpring)
+7. Tech-stack mini-badges in hero (Python, ML, Data Science, Gen AI with icons)
+8. Hero profile card now gently floats (y-axis bobbing animation)
+9. Improved hero CTA button contrast (emerald-tinted outline for Resume button)
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200` consistently
+- agent-browser: chatbot still functional after all changes
+- VLM final report: **9/10 polish** (up from 7.5), all 9 sections render in full screenshot, Currently Learning widget visible, project cards consistent height, scroll progress bar present
+
+Stage Summary:
+- Critical visibility bug FIXED (content no longer hidden in full-page screenshots)
+- Polish rating improved 7.5 → 9/10
+- 6 new reusable components added (AnimatedCounter, Typewriter, TiltCard, ScrollProgress + integrations)
+- Resume data file extended with `resumeUrl`, `currentlyLearning`, numeric stats
+- All new features verified working via VLM + agent-browser
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Add subtle "lift" hover micro-interaction on certification cards (translateY + shadow) — projects already have tilt
+- Mobile responsiveness audit: verify About 3-col grid + Skills side-by-side stack gracefully < 768px
+- Add light/dark theme toggle (next-themes) — requires converting hardcoded slate/white classes to CSS variables (significant effort)
+- Add a testimonials/mentors section (would need real data — avoid fabrication)
+- Add page-load entrance animation for the whole page
+- Consider adding a subtle noise texture overlay for premium feel
+- Add `prefers-reduced-motion` support to disable heavy animations for accessibility

@@ -49,8 +49,7 @@ export function Skills() {
               <motion.div
                 key={cat.title}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: ci * 0.08 }}
                 className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-7"
               >
@@ -99,8 +98,7 @@ export function Skills() {
         {/* Tag cloud */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mt-8 flex flex-wrap justify-center gap-2.5"
         >
@@ -155,8 +153,7 @@ function SkillBar({
       <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-slate-800/80">
         <motion.div
           initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true, margin: "-80px" }}
+          animate={{ width: `${level}%` }}
           transition={{ duration: 0.9, delay, ease: "easeOut" }}
           className={cn(
             "h-full rounded-full bg-gradient-to-r",

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Github } from "lucide-react";
 import { SectionHeading } from "./section-heading";
+import { TiltCard } from "./tilt-card";
 import { projects, profile } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 
@@ -44,16 +45,24 @@ export function Projects() {
           {projects.map((p, i) => {
             const a = accentMap[p.accent] ?? accentMap.emerald;
             return (
-              <motion.article
-                key={p.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition hover:border-white/20 hover:shadow-2xl hover:shadow-black/30"
-              >
-                {/* Image */}
-                <div className="relative h-44 overflow-hidden sm:h-52">
+              <TiltCard key={p.name} max={6} className="[perspective:1200px]">
+                <motion.article
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-900/20"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  {/* Animated gradient glow border on hover */}
+                  <div
+                    className={cn(
+                      "pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-r opacity-0 transition-opacity duration-500 group-hover:opacity-100",
+                      a.glow
+                    )}
+                    style={{ maskImage: "linear-gradient(#000, transparent 60%)", WebkitMaskImage: "linear-gradient(#000, transparent 60%)", padding: 1 } as React.CSSProperties}
+                  />
+                  {/* Image */}
+                  <div className="relative h-44 overflow-hidden sm:h-52" style={{ transform: "translateZ(40px)" }}>
                   {p.image ? (
                     <Image
                       src={p.image}
@@ -121,7 +130,7 @@ export function Projects() {
                     </a>
                   </div>
 
-                  <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                  <p className="mt-3 text-sm leading-relaxed text-slate-300">
                     {p.description}
                   </p>
 
@@ -166,6 +175,7 @@ export function Projects() {
                   </div>
                 </div>
               </motion.article>
+              </TiltCard>
             );
           })}
         </div>

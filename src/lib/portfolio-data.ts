@@ -44,6 +44,7 @@ export const profile = {
   objective:
     "AI & Data Science student with a strong foundation in Python and problem-solving, seeking an online internship to apply technical skills and gain practical experience in real-world projects.",
   available: true,
+  resumeUrl: "/Akil-S-Resume.pdf",
 };
 
 export type NavItem = { label: string; href: string };
@@ -58,13 +59,26 @@ export const navItems: NavItem[] = [
   { label: "Contact", href: "#contact" },
 ];
 
-export type StatItem = { label: string; value: string };
+export type StatItem = { label: string; value: string; numeric: number; decimals?: number; suffix?: string };
 
 export const stats: StatItem[] = [
-  { label: "CGPA", value: "8.21" },
-  { label: "SSLC %", value: "90.6" },
-  { label: "HSC %", value: "87" },
-  { label: "Certifications", value: "7+" },
+  { label: "CGPA", value: "8.21", numeric: 8.21, decimals: 2 },
+  { label: "SSLC %", value: "90.6", numeric: 90.6, decimals: 1 },
+  { label: "HSC %", value: "87", numeric: 87, decimals: 0 },
+  { label: "Certs", value: "7+", numeric: 7, suffix: "+" },
+];
+
+export type LearningItem = {
+  name: string;
+  progress: number;
+  icon: LucideIcon;
+};
+
+export const currentlyLearning: LearningItem[] = [
+  { name: "Machine Learning", progress: 72, icon: Brain },
+  { name: "Deep Learning", progress: 58, icon: Sparkles },
+  { name: "Data Structures", progress: 80, icon: Database },
+  { name: "Generative AI", progress: 65, icon: Bot },
 ];
 
 export type EducationItem = {

@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import { Target, Heart, Lightbulb, GraduationCap, Rocket } from "lucide-react";
 import { SectionHeading } from "./section-heading";
-import { profile, languages, tools, achievements } from "@/lib/portfolio-data";
+import {
+  profile,
+  languages,
+  tools,
+  achievements,
+  currentlyLearning,
+} from "@/lib/portfolio-data";
 
 const highlights = [
   {
@@ -43,8 +49,7 @@ export function About() {
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8"
             >
@@ -67,8 +72,7 @@ export function About() {
                 <motion.div
                   key={h.title}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
                   className="group rounded-2xl border border-white/10 bg-slate-950/40 p-5 transition hover:border-emerald-400/40 hover:bg-emerald-500/5"
                 >
@@ -90,8 +94,7 @@ export function About() {
           <div className="space-y-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
             >
@@ -116,8 +119,7 @@ export function About() {
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
               className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
             >
@@ -140,8 +142,7 @@ export function About() {
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.16 }}
               className="rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-transparent p-6 backdrop-blur-sm"
             >
@@ -159,9 +160,55 @@ export function About() {
                       <div className="text-sm font-medium text-white">
                         {a.title}
                       </div>
-                      <p className="mt-0.5 text-xs leading-relaxed text-slate-400">
+                      <p className="mt-0.5 text-xs leading-relaxed text-slate-300">
                         {a.description}
                       </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Currently Learning */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.24 }}
+              className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-transparent p-6 backdrop-blur-sm"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                  <GraduationCap className="h-4 w-4 text-emerald-400" />
+                  Currently Learning
+                </div>
+                <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-300">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                  Live
+                </span>
+              </div>
+              <div className="mt-4 space-y-3">
+                {currentlyLearning.map((l) => (
+                  <div key={l.name}>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="flex items-center gap-1.5 font-medium text-slate-200">
+                        <l.icon className="h-3.5 w-3.5 text-emerald-400" />
+                        {l.name}
+                      </span>
+                      <span className="font-semibold text-emerald-300">
+                        {l.progress}%
+                      </span>
+                    </div>
+                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-800/80">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${l.progress}%` }}
+                        transition={{
+                          duration: 1,
+                          delay: 0.3,
+                          ease: "easeOut",
+                        }}
+                        className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"
+                      />
                     </div>
                   </div>
                 ))}

@@ -8,6 +8,7 @@ import { Certifications } from "@/components/portfolio/certifications";
 import { Achievements } from "@/components/portfolio/achievements";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
+import { ScrollProgress } from "@/components/portfolio/scroll-progress";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
         <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-600/5 blur-[120px]" />
       </div>
 
+      <ScrollProgress />
       <Navbar />
       <main className="flex-1">
         <Hero />

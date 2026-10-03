@@ -9,9 +9,24 @@ import {
   ArrowDown,
   Sparkles,
   MapPin,
+  Download,
+  Code2,
+  Brain,
+  Database,
+  Bot,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { profile, stats } from "@/lib/portfolio-data";
+import { AnimatedCounter } from "./animated-counter";
+import { Typewriter } from "./typewriter";
+
+const rotatingRoles = [
+  "AI & Data Science Student",
+  "Python Problem-Solver",
+  "ML Enthusiast",
+  "Test Automation Builder",
+  "Future Intern",
+];
 
 export function Hero() {
   return (
@@ -51,20 +66,24 @@ export function Hero() {
               </span>
             </motion.h1>
 
-            <motion.p
+            {/* Rotating role with typewriter */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.12 }}
-              className="mt-3 text-lg font-semibold text-slate-200 sm:text-xl"
+              className="mt-3 flex h-8 items-center text-lg font-semibold text-slate-100 sm:text-xl"
             >
-              {profile.title}
-            </motion.p>
+              <Typewriter
+                words={rotatingRoles}
+                className="bg-gradient-to-r from-emerald-200 to-teal-200 bg-clip-text text-transparent"
+              />
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.18 }}
-              className="mt-4 max-w-xl text-sm leading-relaxed text-slate-400 sm:text-base"
+              className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base"
             >
               {profile.tagline}
             </motion.p>
@@ -73,7 +92,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.24 }}
-              className="mt-6 flex items-center gap-2 text-sm text-slate-400"
+              className="mt-6 flex items-center gap-2 text-sm text-slate-300"
             >
               <MapPin className="h-4 w-4 text-emerald-400" />
               {profile.location}
@@ -91,10 +110,20 @@ export function Hero() {
                     .querySelector("#contact")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="h-11 bg-gradient-to-br from-emerald-500 to-teal-600 px-5 text-white hover:from-emerald-400 hover:to-teal-500"
+                className="h-11 bg-gradient-to-br from-emerald-500 to-teal-600 px-5 text-white shadow-lg shadow-emerald-900/30 hover:from-emerald-400 hover:to-teal-500"
               >
                 <Sparkles className="h-4 w-4" />
                 Get in touch
+              </Button>
+              <Button
+                variant="outline"
+                asChild
+                className="h-11 border-emerald-400/30 bg-emerald-500/5 px-5 text-emerald-100 hover:bg-emerald-500/15 hover:text-white"
+              >
+                <a href={profile.resumeUrl} download="Akil-S-Resume.pdf">
+                  <Download className="h-4 w-4" />
+                  Resume
+                </a>
               </Button>
               <Button
                 variant="outline"
@@ -103,7 +132,7 @@ export function Hero() {
               >
                 <a href={profile.github} target="_blank" rel="noreferrer">
                   <Github className="h-4 w-4" />
-                  View GitHub
+                  GitHub
                 </a>
               </Button>
               <div className="flex items-center gap-2">
@@ -115,6 +144,30 @@ export function Hero() {
                 </SocialIcon>
               </div>
             </motion.div>
+
+            {/* Tech stack mini-badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="mt-8 flex flex-wrap items-center gap-2"
+            >
+              <span className="text-xs text-slate-400">Focus areas:</span>
+              {[
+                { icon: Code2, label: "Python" },
+                { icon: Brain, label: "Machine Learning" },
+                { icon: Database, label: "Data Science" },
+                { icon: Bot, label: "Generative AI" },
+              ].map((t) => (
+                <span
+                  key={t.label}
+                  className="inline-flex items-center gap-1.5 rounded-md border border-white/10 bg-slate-950/40 px-2.5 py-1 text-[11px] font-medium text-slate-300"
+                >
+                  <t.icon className="h-3 w-3 text-emerald-400" />
+                  {t.label}
+                </span>
+              ))}
+            </motion.div>
           </div>
 
           {/* Right: card / avatar */}
@@ -125,19 +178,21 @@ export function Hero() {
             className="relative mx-auto w-full max-w-sm"
           >
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-emerald-500/30 via-teal-500/20 to-transparent blur-2xl" />
-            <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
+            >
               <div className="flex items-center gap-4">
                 <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 text-2xl font-bold text-white shadow-lg shadow-emerald-900/40">
                   AS
-                  <span className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-slate-950 ring-2 ring-emerald-400">
-                    <Sparkles className="h-3 w-3 text-emerald-300" />
-                  </span>
                 </div>
                 <div>
                   <div className="text-base font-semibold text-white">
                     {profile.name}
                   </div>
-                  <div className="text-xs text-emerald-300">
+                  <div className="flex items-center gap-1.5 text-xs text-emerald-300">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                     {profile.subtitle}
                   </div>
                 </div>
@@ -148,21 +203,26 @@ export function Hero() {
               </p>
 
               <div className="mt-5 grid grid-cols-4 gap-2">
-                {stats.map((s) => (
+                {stats.map((s, i) => (
                   <div
                     key={s.label}
                     className="rounded-xl border border-white/10 bg-slate-950/40 p-3 text-center"
                   >
                     <div className="text-lg font-bold text-emerald-300">
-                      {s.value}
+                      <AnimatedCounter
+                        value={s.numeric}
+                        decimals={s.decimals ?? 0}
+                        suffix={s.suffix ?? ""}
+                        duration={1.6 + i * 0.1}
+                      />
                     </div>
-                    <div className="mt-0.5 text-[10px] uppercase tracking-wide text-slate-400">
+                    <div className="mt-0.5 text-[10px] uppercase tracking-wide text-slate-300">
                       {s.label}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -176,7 +236,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
-          className="mx-auto mt-12 flex hidden flex-col items-center gap-2 text-slate-400 transition hover:text-emerald-300 lg:flex"
+          className="mx-auto mt-12 hidden flex-col items-center gap-2 text-slate-400 transition hover:text-emerald-300 lg:flex"
           aria-label="Scroll to about"
         >
           <span className="text-xs">Scroll to explore</span>
@@ -202,7 +262,7 @@ function SocialIcon({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-300"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-100 transition hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-300"
     >
       {children}
     </a>

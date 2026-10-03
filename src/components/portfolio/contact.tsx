@@ -60,8 +60,7 @@ export function Contact() {
           {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8"
           >
@@ -78,7 +77,7 @@ export function Contact() {
               <h3 className="mt-5 text-xl font-bold text-white">
                 Reach out directly
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">
+              <p className="mt-2 text-sm leading-relaxed text-slate-300">
                 Prefer email or LinkedIn? Pick whatever works for you — I
                 usually reply within a day.
               </p>
@@ -96,7 +95,7 @@ export function Contact() {
                       <c.icon className="h-4.5 w-4.5" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-[11px] uppercase tracking-wide text-slate-400">
+                      <div className="text-[11px] uppercase tracking-wide text-slate-300">
                         {c.label}
                       </div>
                       <div className="truncate text-sm font-medium text-white">
@@ -112,8 +111,7 @@ export function Contact() {
           {/* Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
             className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8"
           >
@@ -125,7 +123,7 @@ export function Contact() {
                 <h3 className="mt-4 text-lg font-bold text-white">
                   Ready to send!
                 </h3>
-                <p className="mt-2 text-sm text-slate-400">
+                <p className="mt-2 text-sm text-slate-300">
                   Your email app should have opened with your message. If not,
                   write to me at{" "}
                   <a
@@ -158,7 +156,7 @@ export function Contact() {
                     name="name"
                     placeholder="e.g. Priya Sharma"
                     required
-                    className="border-white/10 bg-slate-950/60 text-white placeholder:text-slate-500 focus-visible:border-emerald-500/60 focus-visible:ring-emerald-500/30"
+                    className="border-white/10 bg-slate-950/60 text-white placeholder:text-slate-400 focus-visible:border-emerald-500/60 focus-visible:ring-emerald-500/30"
                   />
                 </div>
                 <div>
@@ -174,7 +172,7 @@ export function Contact() {
                     type="email"
                     placeholder="you@company.com"
                     required
-                    className="border-white/10 bg-slate-950/60 text-white placeholder:text-slate-500 focus-visible:border-emerald-500/60 focus-visible:ring-emerald-500/30"
+                    className="border-white/10 bg-slate-950/60 text-white placeholder:text-slate-400 focus-visible:border-emerald-500/60 focus-visible:ring-emerald-500/30"
                   />
                 </div>
                 <div>
@@ -190,7 +188,7 @@ export function Contact() {
                     rows={4}
                     placeholder="Tell me about the role or project…"
                     required
-                    className="resize-none border-white/10 bg-slate-950/60 text-white placeholder:text-slate-500 focus-visible:border-emerald-500/60 focus-visible:ring-emerald-500/30"
+                    className="resize-none border-white/10 bg-slate-950/60 text-white placeholder:text-slate-400 focus-visible:border-emerald-500/60 focus-visible:ring-emerald-500/30"
                   />
                 </div>
                 <Button

@@ -6,9 +6,9 @@ import { profile } from "@/lib/portfolio-data";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative border-t border-white/10 bg-slate-950 mt-auto">
+    <footer className="relative mt-20 border-t border-white/10 bg-slate-950">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 sm:py-14">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 font-bold text-white shadow-md shadow-emerald-900/40">
