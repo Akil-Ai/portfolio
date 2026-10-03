@@ -10,6 +10,7 @@ import {
   achievements,
   currentlyLearning,
 } from "@/lib/portfolio-data";
+import { NowWidget } from "./now-widget";
 
 const highlights = [
   {
@@ -65,6 +66,19 @@ export function About() {
                 explainable systems, and I&apos;m actively looking for an online
                 internship where I can do more of that in a real-world setting.
               </p>
+            </motion.div>
+
+            {/* Now status widget */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                Right now
+              </div>
+              <NowWidget />
             </motion.div>
 
             <div className="grid gap-4 sm:grid-cols-2">

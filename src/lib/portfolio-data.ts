@@ -47,6 +47,24 @@ export const profile = {
   resumeUrl: "/Akil-S-Resume.pdf",
 };
 
+export const nowStatus = {
+  playing: {
+    label: "Now playing",
+    title: "Lo-fi beats to debug to",
+    artist: "ChilledCow Radio",
+  },
+  reading: {
+    label: "Currently reading",
+    title: "Deep Learning",
+    author: "Ian Goodfellow et al.",
+  },
+  building: {
+    label: "Building",
+    title: "UAT-Lens-Ai v2",
+    detail: "adding multi-doc support",
+  },
+};
+
 export type NavItem = { label: string; href: string };
 
 export const navItems: NavItem[] = [

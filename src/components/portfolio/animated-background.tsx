@@ -1,20 +1,40 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 /**
- * Slowly shifting animated gradient background.
+ * Slowly shifting animated gradient background with mouse-move parallax.
  * Fixed, pointer-events-none, sits behind all content (-z-40).
  * Hue rotates between emerald/teal/cyan accents over a long cycle.
+ * Orbs drift slightly based on mouse position for parallax depth.
  * Respects prefers-reduced-motion via the global CSS rule.
  */
 export function AnimatedBackground() {
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const sx = useSpring(mx, { stiffness: 40, damping: 20 });
+  const sy = useSpring(my, { stiffness: 40, damping: 20 });
+
+  const orb1X = useTransform(sx, [0, 1], [-30, 30]);
+  const orb1Y = useTransform(sy, [0, 1], [-20, 20]);
+  const orb2X = useTransform(sx, [0, 1], [25, -25]);
+  const orb2Y = useTransform(sy, [0, 1], [20, -20]);
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    mx.set(e.clientX / window.innerWidth);
+    my.set(e.clientY / window.innerHeight);
+  };
+
   return (
-    <div className="pointer-events-none fixed inset-0 -z-40 overflow-hidden" aria-hidden>
+    <div
+      className="pointer-events-none fixed inset-0 -z-40 overflow-hidden"
+      aria-hidden
+      onMouseMove={handleMove}
+    >
       {/* Base */}
       <div className="absolute inset-0 bg-slate-950" />
 
-      {/* Slowly drifting hue orbs */}
+      {/* Slowly drifting hue orbs (with parallax) */}
       <motion.div
         animate={{
           background: [
@@ -28,6 +48,7 @@ export function AnimatedBackground() {
         className="absolute inset-0"
       />
       <motion.div
+        style={{ x: orb2X, y: orb2Y }}
         animate={{
           background: [
             "radial-gradient(circle at 80% 70%, rgba(45,212,191,0.10), transparent 55%)",
@@ -38,6 +59,16 @@ export function AnimatedBackground() {
         }}
         transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
         className="absolute inset-0"
+      />
+
+      {/* Parallax glow orbs (follow mouse subtly) */}
+      <motion.div
+        style={{ x: orb1X, y: orb1Y }}
+        className="absolute left-[10%] top-[15%] h-72 w-72 rounded-full bg-emerald-500/15 blur-3xl"
+      />
+      <motion.div
+        style={{ x: orb2X, y: orb2Y }}
+        className="absolute right-[10%] top-[30%] h-80 w-80 rounded-full bg-teal-500/12 blur-3xl"
       />
 
       {/* Subtle moving conic accent near top */}

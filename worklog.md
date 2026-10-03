@@ -311,3 +311,51 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Consider adding testimonials/endorsements if Akil gets real quotes
 - Add a 404 page with on-brand styling
 - Consider adding a /api/og dynamic OG image route for per-section sharing
+
+---
+Task ID: 7
+Agent: webDevReview cron (round 5)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–6): portfolio stable, polish ~9/10, 10 sections, full SEO + entrance animation + animated background + resume modal all working
+- QA via agent-browser: page loads `GET / 200`, no console errors/warnings, all 10 sections + JSON-LD + command palette badge + chatbot button confirmed
+- Tested 404 route `/nonexistent` → confirmed it uses Next.js default 404 page (no custom branding)
+- VLM hero analysis flagged: animated background not visible (static feel), no back-to-top button, no "now playing" widget
+
+CRITICAL BUG FOUND & FIXED:
+- **Animated background was invisible** — the page wrapper div had opaque `bg-slate-950` which covered the `AnimatedBackground` component at `-z-40`. Fixed by removing `bg-slate-950` from the page wrapper (AnimatedBackground provides its own dark base internally). Also made the Hero's HeroBackground transparent (removed its `bg-slate-950` base, softened vignette to `from-slate-950/30 via-transparent to-slate-950/40`) so the global animated orbs show through the hero area too. Now the living, hue-shifting background is actually visible across the whole page.
+
+New features added:
+1. **Custom 404 page** (`src/app/not-found.tsx`) — on-brand styled 404 with: big gradient "404" text (emerald→teal), animated radial glow background, grid overlay, "Lost in the neural network" badge with pulsing dot, descriptive heading + body, "Back to home" + "Contact Akil" CTAs, ⌘K tip, and a "Go back" button (history.back). Matches the dark emerald/teal portfolio aesthetic.
+2. **BackToTop button** (`back-to-top.tsx`) — floating emerald button (bottom-left, above the command palette badge) that appears after scrolling 600px. Animated entrance (scale+fade), hover lift, smooth scroll-to-top. Verified: appears after scroll, hidden at top.
+3. **NowWidget** (`now-widget.tsx`) — 3 "Right now" status cards in the About section: Now playing (Lo-fi beats to debug to / ChilledCow), Currently reading (Deep Learning / Ian Goodfellow), Building (UAT-Lens-Ai v2 / adding multi-doc support). Each with accent-colored icon, pulsing status dot, truncated title/subtitle. Added `nowStatus` data model to portfolio-data.ts. Verified: all 3 card titles render in DOM.
+4. **Parallax mouse-move depth** in AnimatedBackground — two glow orbs now follow the mouse position via `useMotionValue` + `useSpring` (stiffness 40, damping 20) for subtle parallax depth. The orbs drift ±30px based on cursor position, creating a 3D depth feel. Combined with the existing hue-shift animation.
+
+Styling improvements:
+- Fixed the critical animated-background visibility bug (opaque bg covering -z-40 layer)
+- Hero vignette softened to let animated background show through
+- NowWidget cards with hover border + accent icons + pulsing status dots
+- 404 page matches the portfolio's premium dark aesthetic
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200` + `GET /nonexistent 404` (custom 404 renders with correct status)
+- agent-browser: 404 page shows branded "404" h1 + "Back to home" link; NowWidget shows all 3 card titles (Lo-fi beats, Deep Learning, UAT-Lens-Ai v2); BackToTop button appears after scroll; all 10 sections still present
+- VLM About-section analysis: confirmed "Right Now" section with 3 status cards rendering correctly, animated background visible
+
+Stage Summary:
+- 4 new features: custom 404 page, BackToTop button, NowWidget, parallax orbs (4 new component files + data model)
+- 1 critical bug fixed: animated background was invisible due to z-index layering (opaque bg-slate-950 covering -z-40)
+- Portfolio now has: branded 404, scroll-aware back-to-top, live "now" status widget, mouse-parallax animated background
+- All verified working end-to-end, no console errors, lint clean
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Light/dark theme toggle (still the largest deferred item)
+- Replace AI-generated project images with real UI mockups (needs Akil's actual screenshots)
+- Add a "blog/notes" or "learning log" section (needs content source)
+- Add testimonials/endorsements if Akil gets real quotes
+- Consider a /api/og dynamic OG image route for per-section sharing
+- Add subtle particle system on the hero for extra "wow"
+- Consider adding a mini "stats counter" section that animates on scroll
+- Add keyboard shortcut help modal (? key)

@@ -15,6 +15,7 @@ import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
 import { CommandPalette } from "@/components/portfolio/command-palette";
 import { AnimatedBackground } from "@/components/portfolio/animated-background";
 import { PageEntrance } from "@/components/portfolio/page-entrance";
+import { BackToTop } from "@/components/portfolio/back-to-top";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 
 function Divider() {
@@ -27,8 +28,8 @@ function Divider() {
 
 export default function Home() {
   return (
-    <div className="noise-overlay relative flex min-h-screen flex-col bg-slate-950 text-slate-100">
-      {/* Animated gradient background (slowly shifting hue) */}
+    <div className="noise-overlay relative flex min-h-screen flex-col text-slate-100">
+      {/* Animated gradient background (slowly shifting hue) — provides the dark base + living orbs */}
       <AnimatedBackground />
 
       <PageEntrance>
@@ -60,6 +61,8 @@ export default function Home() {
 
       {/* Floating AI chatbot */}
       <ChatbotWidget />
+      {/* Back-to-top button (appears on scroll) */}
+      <BackToTop />
       {/* Command palette (Cmd+K / Ctrl+K) */}
       <CommandPalette />
     </div>

@@ -275,8 +275,7 @@ function SocialIcon({
 function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-slate-950" />
-      {/* Grid pattern */}
+      {/* Grid pattern (base transparent — global AnimatedBackground shows through) */}
       <div
         className="absolute inset-0 opacity-[0.18]"
         style={{
@@ -305,8 +304,8 @@ function HeroBackground() {
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl"
       />
-      {/* Vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+      {/* Soft vignette (transparent → keeps global animated bg visible) */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/30 via-transparent to-slate-950/40" />
     </div>
   );
 }
