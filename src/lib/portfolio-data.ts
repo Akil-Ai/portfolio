@@ -252,6 +252,13 @@ export type Project = {
   icon: LucideIcon;
   image?: string;
   accent: string;
+  caseStudy?: {
+    overview: string;
+    problem: string;
+    approach: string[];
+    outcome: string;
+    techStack: string[];
+  };
 };
 
 export const projects: Project[] = [
@@ -269,6 +276,21 @@ export const projects: Project[] = [
     icon: FileText,
     image: "/projects/uat-lens.png",
     accent: "emerald",
+    caseStudy: {
+      overview:
+        "UAT-Lens-Ai is an AI-powered tool that reads requirement documents and produces verified, traceable User Acceptance Testing (UAT) test cases — closing the gap between requirements engineering and QA.",
+      problem:
+        "Writing UAT test cases from dense requirement documents is slow, error-prone, and rarely traceable back to the exact source line. QA teams spend hours manually mapping each test step to a verbatim requirement, and LLM-generated cases often hallucinate details that were never actually specified.",
+      approach: [
+        "Parse PRDs, BRDs, user stories, and acceptance criteria into a structured requirement graph",
+        "Generate test cases anchored to verbatim source quotes — every step links to the exact line it came from",
+        "Apply a zero-hallucination verification pass that flags any test step without a source citation",
+        "Export as traceability matrices for downstream QA tools",
+      ],
+      outcome:
+        "Turns hours of manual QA authoring into minutes of verified, auditable output — with a citation attached to every assertion so reviewers can trust the result.",
+      techStack: ["Python", "NLP", "LLM orchestration", "Traceability engine"],
+    },
   },
   {
     name: "Rock-Guard AI",
@@ -284,6 +306,21 @@ export const projects: Project[] = [
     icon: ShieldCheck,
     image: "/projects/rock-guard.png",
     accent: "amber",
+    caseStudy: {
+      overview:
+        "Rock-Guard AI is a control-room console that fuses rock-face imagery with slope-sensor telemetry to produce a graded rockfall risk score, a human-readable explanation, a hazard map, and an actionable alert.",
+      problem:
+        "Geotechnical monitoring tools either show raw sensor numbers (hard to act on) or opaque AI scores (hard to trust). Operators need a single, explainable risk grade plus a clear recommendation — fast.",
+      approach: [
+        "Ingest slope-sensor telemetry (tilt, vibration, moisture) and rock-face imagery in parallel",
+        "Fuse the two modalities into a graded risk score (low / moderate / high / critical)",
+        "Generate a plain-language explanation of why the score is what it is",
+        "Render a hazard map overlay and emit an actionable alert when thresholds are crossed",
+      ],
+      outcome:
+        "Operators get a trustworthy, explainable risk grade plus a recommended action — turning a wall of sensor data into a single defensible decision.",
+      techStack: ["Computer Vision", "IoT telemetry", "Explainable AI", "Hazard mapping"],
+    },
   },
 ];
 

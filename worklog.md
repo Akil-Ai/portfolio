@@ -445,3 +445,49 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Add particle connection lines (constellation effect) when particles are close together
 - Add a "project case study" modal with deeper detail for each project
 - Consider a subtle cursor-following glow on the whole page
+
+---
+Task ID: 10
+Agent: webDevReview cron (round 8)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–9): portfolio stable, polish ~9/10, full hero wow stack (particles + 3D tilt + glitch name + typewriter + equalizer) + 11 sections + all prior features working
+- QA via agent-browser: page loads `GET / 200`, no console errors/warnings, all 11 sections + canvas + glitch text + badges confirmed
+- BUG FOUND: the keyboard help trigger button (`bottom-6 left-28`) overlapped the command palette trigger button (`bottom-6 left-4`, variable width up to ~152px) — they collided on the left side. Also the chatbot send button was reported as "covered" during testing (turned out to be a transient agent-browser targeting issue, not a real bug, but the badge overlap was real)
+
+Fixes applied:
+- **Fixed floating-badge overlap**: moved the keyboard help trigger button from `bottom-6 left-28` (overlapped command palette) to `bottom-28 right-7` (bottom-right, above the chatbot button). Verified positions: command palette at x:16/w:152, help button at x:1190, chatbot at x:1188 — no overlap, help button sits ~20px above chatbot button.
+
+New features added:
+1. **ProjectCaseStudy modal** (`project-case-study.tsx`) — deep-dive modal triggered from each project card's "View case study" button (replaces the old "View project" GitHub link). Shows: hero image with gradient overlay + case-study badge, Overview, The problem, Approach (4 numbered steps with accent-colored number badges), Outcome (highlighted box), Tech stack chips, Key highlights checklist, and a "View on GitHub" action. Added `caseStudy` data model (overview, problem, approach[], outcome, techStack[]) to both projects in portfolio-data.ts (UAT-Lens-Ai + Rock-Guard AI). Verified: modal opens, all sections present, VLM polish 9/10.
+2. **Particle constellation lines** in ParticleField — nearby particles (within 110px) are now connected with thin emerald lines whose opacity fades with distance. Creates a "constellation" / neural-network effect. Drawn before particles so dots sit on top of lines. Combined with the existing mouse-brightening, the hero now has a living network feel.
+3. **CursorGlow** (`cursor-glow.tsx`) — a soft 300px emerald glow that follows the cursor across the whole page (fixed, z-30, pointer-events-none, 60px blur). Uses `useMotionValue` + `useSpring` (stiffness 120, damping 18) for smooth trailing. Only enabled on `pointer: fine` devices (disabled on touch) and respects `prefers-reduced-motion`. Sits above AnimatedBackground but below content/modal layer (z-50).
+
+Styling improvements:
+- Project cards now have a "View case study" CTA with a tech-count hint
+- Case study modal with consistent dark emerald/teal aesthetic, numbered approach steps, highlighted outcome box
+- Hero particle field now draws constellation connections
+- Whole page has a subtle cursor-following glow for premium feel
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200` + `POST /api/chat 200`
+- agent-browser: badge positions no longer overlap (palette x:16, help x:1190, chat x:1188); case study modal opens with all sections (Overview, The problem, Approach numbered, Outcome, Tech stack); chatbot re-tested and responds correctly
+- VLM case study modal: confirmed hero image, project name, all 4 visible sections (Overview/Problem/Approach/Outcome) with icons + numbered steps, polish 9/10
+
+Stage Summary:
+- 3 new features: ProjectCaseStudy modal, particle constellation lines, CursorGlow (2 new component files + data model + particle enhancement)
+- 1 real bug fixed: floating-badge overlap (keyboard help button moved to bottom-right)
+- Portfolio now has: constellation particle hero, cursor-following glow, deep project case-study modals
+- All verified working end-to-end, no console errors, lint clean, chatbot functional
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Light/dark theme toggle (still the largest deferred item)
+- Replace AI-generated project images with real UI mockups (needs Akil's actual screenshots)
+- Add a "blog/notes" or "learning log" section (needs content source)
+- Add testimonials/endorsements if Akil gets real quotes
+- Consider a /api/og dynamic OG image route for per-section sharing
+- Add a "skills constellation" visualization (radial graph of skill connections)
+- Add a subtle "scroll-driven" progress indicator per section
+- Consider a mini "terminal" easter egg widget for the tech aesthetic

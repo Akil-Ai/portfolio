@@ -102,10 +102,10 @@ export function KeyboardHelp() {
 
   return (
     <>
-      {/* Trigger badge (desktop only) — sits next to the command palette badge */}
+      {/* Trigger badge (desktop only) — bottom-right, above the chatbot button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 left-28 z-40 hidden h-9 items-center gap-1.5 rounded-full border border-white/10 bg-slate-950/70 px-3 text-[11px] font-medium text-slate-300 backdrop-blur-md transition hover:border-emerald-400/40 hover:text-emerald-300 lg:flex"
+        className="fixed bottom-28 right-7 z-40 hidden h-9 items-center gap-1.5 rounded-full border border-white/10 bg-slate-950/70 px-3 text-[11px] font-medium text-slate-300 backdrop-blur-md transition hover:border-emerald-400/40 hover:text-emerald-300 lg:flex"
         aria-label="Open keyboard shortcuts help"
       >
         <Keyboard className="h-3.5 w-3.5" />

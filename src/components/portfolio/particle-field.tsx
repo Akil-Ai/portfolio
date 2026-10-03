@@ -68,6 +68,29 @@ export function ParticleField({
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
+
+      // Draw constellation lines between nearby particles
+      const maxDist = 110;
+      for (let i = 0; i < parts.length; i++) {
+        for (let j = i + 1; j < parts.length; j++) {
+          const p1 = parts[i];
+          const p2 = parts[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            const alpha = (1 - dist / maxDist) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
       for (const p of parts) {
         p.y += p.vy;
         p.phase += 0.01 * p.swaySpeed;
@@ -95,6 +118,7 @@ export function ParticleField({
         ctx.shadowColor = "rgba(16, 185, 129, 0.8)";
         ctx.fill();
       }
+      ctx.shadowBlur = 0;
       raf = requestAnimationFrame(draw);
     };
 

@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, Github } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { TiltCard } from "./tilt-card";
-import { projects, profile } from "@/lib/portfolio-data";
+import { ProjectCaseStudy } from "./project-case-study";
+import { projects, profile, type Project } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 
 const accentMap: Record<string, { ring: string; text: string; glow: string; btn: string }> = {
@@ -31,6 +32,7 @@ const accentMap: Record<string, { ring: string; text: string; glow: string; btn:
 };
 
 export function Projects() {
+  const [active, setActive] = React.useState<Project | null>(null);
   return (
     <section id="projects" className="relative scroll-mt-20 py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-slate-950/40 to-slate-950" />
@@ -160,18 +162,19 @@ export function Projects() {
                   </div>
 
                   <div className="mt-5 flex items-center gap-2 pt-2">
-                    <a
-                      href={profile.github}
-                      target="_blank"
-                      rel="noreferrer"
+                    <button
+                      onClick={() => setActive(p)}
                       className={cn(
                         "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition",
                         a.btn
                       )}
                     >
-                      View project
+                      View case study
                       <ArrowUpRight className="h-3.5 w-3.5" />
-                    </a>
+                    </button>
+                    {p.caseStudy && (
+                      <span className="text-[10px] text-slate-500">{p.caseStudy.techStack.length} technologies</span>
+                    )}
                   </div>
                 </div>
               </motion.article>
@@ -180,6 +183,7 @@ export function Projects() {
           })}
         </div>
       </div>
+      <ProjectCaseStudy project={active} open={!!active} onOpenChange={(v) => !v && setActive(null)} />
     </section>
   );
 }

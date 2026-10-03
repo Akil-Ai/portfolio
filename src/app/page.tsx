@@ -16,6 +16,7 @@ import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
 import { CommandPalette } from "@/components/portfolio/command-palette";
 import { KeyboardHelp } from "@/components/portfolio/keyboard-help";
 import { AnimatedBackground } from "@/components/portfolio/animated-background";
+import { CursorGlow } from "@/components/portfolio/cursor-glow";
 import { PageEntrance } from "@/components/portfolio/page-entrance";
 import { BackToTop } from "@/components/portfolio/back-to-top";
 import { ChatbotWidget } from "@/components/chatbot-widget";
@@ -33,6 +34,8 @@ export default function Home() {
     <div className="noise-overlay relative flex min-h-screen flex-col text-slate-100">
       {/* Animated gradient background (slowly shifting hue) — provides the dark base + living orbs */}
       <AnimatedBackground />
+      {/* Cursor-following glow (desktop / fine-pointer only) */}
+      <CursorGlow />
 
       <PageEntrance>
         <ScrollProgress />
