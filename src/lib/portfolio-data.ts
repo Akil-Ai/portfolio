@@ -87,6 +87,22 @@ export const stats: StatItem[] = [
   { label: "Certs", value: "7+", numeric: 7, suffix: "+" },
 ];
 
+// Big highlight stats for the scroll-animated counter band
+export type HighlightStat = {
+  value: number;
+  suffix?: string;
+  decimals?: number;
+  label: string;
+  sublabel: string;
+};
+
+export const highlightStats: HighlightStat[] = [
+  { value: 2, label: "AI projects", sublabel: "shipped & verified" },
+  { value: 7, suffix: "+", label: "certifications", sublabel: "across AI, cloud & cyber" },
+  { value: 8.21, decimals: 2, label: "CGPA", sublabel: "B.Tech AI & DS" },
+  { value: 90, suffix: "%", label: "SSLC score", sublabel: "top of cohort" },
+];
+
 export type LearningItem = {
   name: string;
   progress: number;

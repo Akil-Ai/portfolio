@@ -20,6 +20,7 @@ import { profile, stats } from "@/lib/portfolio-data";
 import { AnimatedCounter } from "./animated-counter";
 import { Typewriter } from "./typewriter";
 import { ResumePreviewModal } from "./resume-preview-modal";
+import { ParticleField } from "./particle-field";
 
 const rotatingRoles = [
   "AI & Data Science Student",
@@ -275,6 +276,10 @@ function SocialIcon({
 function HeroBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Particle field (canvas) — emerald particles drift + react to mouse */}
+      <div className="absolute inset-0">
+        <ParticleField count={36} />
+      </div>
       {/* Grid pattern (base transparent — global AnimatedBackground shows through) */}
       <div
         className="absolute inset-0 opacity-[0.18]"

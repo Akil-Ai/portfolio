@@ -8,11 +8,13 @@ import { Experience } from "@/components/portfolio/experience";
 import { Certifications } from "@/components/portfolio/certifications";
 import { Achievements } from "@/components/portfolio/achievements";
 import { BeyondWork } from "@/components/portfolio/beyond-work";
+import { StatsCounter } from "@/components/portfolio/stats-counter";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
 import { ScrollProgress } from "@/components/portfolio/scroll-progress";
 import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
 import { CommandPalette } from "@/components/portfolio/command-palette";
+import { KeyboardHelp } from "@/components/portfolio/keyboard-help";
 import { AnimatedBackground } from "@/components/portfolio/animated-background";
 import { PageEntrance } from "@/components/portfolio/page-entrance";
 import { BackToTop } from "@/components/portfolio/back-to-top";
@@ -40,6 +42,8 @@ export default function Home() {
           <MarqueeStrip />
           <About />
           <Divider />
+          <StatsCounter />
+          <Divider />
           <Education />
           <Divider />
           <Skills />
@@ -65,6 +69,8 @@ export default function Home() {
       <BackToTop />
       {/* Command palette (Cmd+K / Ctrl+K) */}
       <CommandPalette />
+      {/* Keyboard shortcut help (? key) */}
+      <KeyboardHelp />
     </div>
   );
 }
