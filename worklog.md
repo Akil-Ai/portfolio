@@ -268,3 +268,46 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Add OpenGraph image (1200×630) for social sharing — currently no og:image
 - Consider a small "resume preview" modal triggered from the Download button
 - Add keyboard focus-visible rings polish for the command palette items
+
+---
+Task ID: 6
+Agent: webDevReview cron (round 4)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–5): portfolio stable, polish 9/10, 10 sections present, all round-1/2/3 features working
+- QA via agent-browser: page loads `GET / 200`, no console errors/warnings (hooked console.error + console.warn), all 10 sections + JSON-LD (2 scripts) + command palette badge confirmed present
+- VLM desktop analysis confirmed round-3 recommendations still open: hero background feels static, no entrance animation, no OG image, resume directly downloads (no preview)
+- Image-generation: OG image initially failed on 1200x630 and 1440x720 (API requires multiples of 32); succeeded with 1344x768 (both 1344/32=42 and 768/32=24 are integers)
+
+Fixes applied:
+- **Focus-visible ring polish**: added `focus-visible:ring-2 focus-visible:ring-emerald-400/60` to command palette item buttons for keyboard accessibility
+
+New features added:
+1. **OpenGraph social image** (`public/og-image.png`, 1344×768) — AI-generated premium share card with dark slate bg, emerald/teal neural network nodes, circuit patterns. Wired into `metadata.openGraph.images` and `metadata.twitter.images` with correct width/height/alt. Verified: served at `/og-image.png` (200, image/png), both og:image and twitter:image meta tags present in `<head>`.
+2. **ResumePreviewModal** (`resume-preview-modal.tsx`) — polished modal triggered from hero "Resume" button (replaces direct download). Uses shadcn Dialog with: header band (gradient + AS avatar), contact row (email/phone/location/availability), Objective section, Education entries (all 3), Highlights stats grid, and Download PDF + Open in new tab + Close actions. Converts hero button from `asChild` anchor to `onClick` state-driven modal. Verified: opens on click, closes on Escape, contains download link.
+3. **PageEntrance** (`page-entrance.tsx`) — branded page-load entrance animation overlay: full-screen slate-950 overlay with animated radial gradient sweep behind an "AS" logo that scales/rotates in, name + title fade-in, and a sliding emerald loading bar. Auto-dismisses after 1.1s, then page content fades+slides in. Wrapped around ScrollProgress/Navbar/main/Footer in page.tsx. Respects prefers-reduced-motion (global CSS rule disables it).
+4. **AnimatedBackground** (`animated-background.tsx`) — fixed -z-40 layer replacing the old static decorative bg. Slowly shifts hue via two radial-gradient orbs (24s + 30s cycles) drifting between emerald/teal/cyan positions, plus a slowly rotating conic-gradient accent (90s linear) near the top, and a faint grid overlay with radial mask. Gives the whole page a "living premium" feel.
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200`
+- agent-browser: OG image served (200, image/png), og:image + twitter:image meta tags present, resume modal opens on click (title "Akil S", download button present), closes on Escape
+- VLM hero: confirmed animated gradient background elements visible (glowing orbs, color shifts, grid), premium/dynamic feel, Resume button present — polish 8.5/10 (note: VLM saw a partial "Stude" text which is the typewriter mid-animation, not a real bug)
+- VLM resume modal: confirmed name+title, contact info, objective, education entries all render (highlights + buttons are below modal fold — expected for scrollable modal with max-h-90vh)
+
+Stage Summary:
+- 4 new features: OpenGraph image, ResumePreviewModal, PageEntrance, AnimatedBackground (4 new component files + OG asset)
+- 1 fix: focus-visible rings on command palette
+- Portfolio now has full SEO (JSON-LD + OG image + robots), branded page-load animation, living animated background, and a polished resume preview flow
+- All verified working end-to-end, no console errors, lint clean
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Light/dark theme toggle (still deferred — largest remaining effort)
+- Replace AI-generated project images with real UI mockups (needs Akil's actual screenshots)
+- Add a "blog/notes" or "learning log" section (needs content source)
+- Add subtle parallax depth to background orbs on mouse move
+- Add a small "now playing / currently reading" widget for extra warmth
+- Consider adding testimonials/endorsements if Akil gets real quotes
+- Add a 404 page with on-brand styling
+- Consider adding a /api/og dynamic OG image route for per-section sharing

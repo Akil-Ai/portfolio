@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { profile, stats } from "@/lib/portfolio-data";
 import { AnimatedCounter } from "./animated-counter";
 import { Typewriter } from "./typewriter";
+import { ResumePreviewModal } from "./resume-preview-modal";
 
 const rotatingRoles = [
   "AI & Data Science Student",
@@ -29,7 +30,9 @@ const rotatingRoles = [
 ];
 
 export function Hero() {
+  const [resumeOpen, setResumeOpen] = React.useState(false);
   return (
+    <>
     <section
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden pt-16"
@@ -117,13 +120,11 @@ export function Hero() {
               </Button>
               <Button
                 variant="outline"
-                asChild
+                onClick={() => setResumeOpen(true)}
                 className="h-11 border-emerald-400/30 bg-emerald-500/5 px-5 text-emerald-100 hover:bg-emerald-500/15 hover:text-white"
               >
-                <a href={profile.resumeUrl} download="Akil-S-Resume.pdf">
-                  <Download className="h-4 w-4" />
-                  Resume
-                </a>
+                <Download className="h-4 w-4" />
+                Resume
               </Button>
               <Button
                 variant="outline"
@@ -244,6 +245,8 @@ export function Hero() {
         </motion.button>
       </div>
     </section>
+    <ResumePreviewModal open={resumeOpen} onOpenChange={setResumeOpen} />
+    </>
   );
 }
 

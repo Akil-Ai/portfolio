@@ -13,6 +13,8 @@ import { Footer } from "@/components/portfolio/footer";
 import { ScrollProgress } from "@/components/portfolio/scroll-progress";
 import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
 import { CommandPalette } from "@/components/portfolio/command-palette";
+import { AnimatedBackground } from "@/components/portfolio/animated-background";
+import { PageEntrance } from "@/components/portfolio/page-entrance";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 
 function Divider() {
@@ -26,36 +28,35 @@ function Divider() {
 export default function Home() {
   return (
     <div className="noise-overlay relative flex min-h-screen flex-col bg-slate-950 text-slate-100">
-      {/* Global decorative background */}
-      <div className="pointer-events-none fixed inset-0 -z-50">
-        <div className="absolute inset-0 bg-slate-950" />
-        <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-600/5 blur-[120px]" />
-      </div>
+      {/* Animated gradient background (slowly shifting hue) */}
+      <AnimatedBackground />
 
-      <ScrollProgress />
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <MarqueeStrip />
-        <About />
-        <Divider />
-        <Education />
-        <Divider />
-        <Skills />
-        <Divider />
-        <Projects />
-        <Divider />
-        <Experience />
-        <Divider />
-        <Certifications />
-        <Divider />
-        <Achievements />
-        <Divider />
-        <BeyondWork />
-        <Divider />
-        <Contact />
-      </main>
-      <Footer />
+      <PageEntrance>
+        <ScrollProgress />
+        <Navbar />
+        <main className="flex-1">
+          <Hero />
+          <MarqueeStrip />
+          <About />
+          <Divider />
+          <Education />
+          <Divider />
+          <Skills />
+          <Divider />
+          <Projects />
+          <Divider />
+          <Experience />
+          <Divider />
+          <Certifications />
+          <Divider />
+          <Achievements />
+          <Divider />
+          <BeyondWork />
+          <Divider />
+          <Contact />
+        </main>
+        <Footer />
+      </PageEntrance>
 
       {/* Floating AI chatbot */}
       <ChatbotWidget />

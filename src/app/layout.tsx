@@ -37,12 +37,21 @@ export const metadata: Metadata = {
       "AI & Data Science student building trustworthy, explainable AI systems. Open to internships.",
     type: "profile",
     siteName: "Akil S Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1344,
+        height: 768,
+        alt: "Akil S — AI & Data Science Engineer Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Akil S — AI & Data Science Engineer",
     description:
       "AI & Data Science student building trustworthy, explainable AI systems.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

@@ -239,7 +239,7 @@ export function CommandPalette() {
                           onMouseEnter={() => setActive(idx)}
                           onClick={c.action}
                           className={cn(
-                            "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition",
+                            "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/60",
                             isActive
                               ? "bg-emerald-500/15 text-white"
                               : "text-slate-300 hover:bg-white/5"
