@@ -491,3 +491,45 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Add a "skills constellation" visualization (radial graph of skill connections)
 - Add a subtle "scroll-driven" progress indicator per section
 - Consider a mini "terminal" easter egg widget for the tech aesthetic
+
+---
+Task ID: 11
+Agent: webDevReview cron (round 9)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–10): portfolio stable, polish ~9/10, constellation particles + cursor glow + case-study modals + full hero wow stack + 11 sections all working
+- QA via agent-browser: page loads `GET / 200`, no console errors/warnings, all 11 sections + 2 canvases (hero + constellation) + glitch text + case study button confirmed
+- VLM skills-section analysis confirmed the existing skill bars + tag cloud are solid, and a radial constellation graph would add value (exactly as planned)
+
+New features added:
+1. **SkillsConstellation** (`skills-constellation.tsx`) — canvas-based radial "constellation" visualization in the Skills section: 8 skill nodes (Python, ML, SQL, JS, Java, HTML/CSS, Leadership, Teamwork) positioned around a glowing center, sized by proficiency (radius scales with level), with: center radial glow, lines from each node to center (faint), inter-node constellation lines (opacity fades with distance, max 180px), gentle sine-wave floating, mouse-repulsion within 90px. Each node has a colored glow + solid core + name label + percentage. Respects `prefers-reduced-motion` (single frame, no animation). On-brand emerald/teal/amber colors. Verified: 2 canvases in DOM, "SKILL CONSTELLATION" label present, VLM confirmed radial layout + nodes + lines + labels.
+2. **TerminalEasterEgg** (`terminal-easter-egg.tsx`) — a mini terminal widget toggled by the `t` key. macOS-style title bar (red/amber/green dots), "akil@portfolio: ~" prompt, auto-types 6 commands in sequence (whoami → cat skills.txt → ls projects/ → status --availability → echo $MOTIVATION → git log) with realistic typing speed (45-105ms per char), command in emerald + output in slate-300, blinking cursor. Loops after completion with a replay hint. Closes with Escape. Footer hint shows the t/Esc keys. Verified: opens with 't', shows prompt + commands, closes with Escape. VLM polish 9/10.
+
+Styling improvements:
+- Skills section now has a full canvas constellation visualization below the tag cloud
+- Terminal easter egg with authentic macOS terminal styling, syntax highlighting, blinking cursor
+- Both new features respect `prefers-reduced-motion`
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200`
+- agent-browser: 2 canvases (hero + constellation), terminal opens with 't' and shows prompt + commands, closes with Escape, "SKILL CONSTELLATION" label present
+- VLM constellation: confirmed radial layout with nodes + connecting lines + labels
+- VLM terminal: confirmed title bar dots, prompt, typed commands + outputs, hint footer, polish 9/10
+
+Stage Summary:
+- 2 new features: SkillsConstellation (canvas radial graph) + TerminalEasterEgg ('t' key widget) (2 new component files)
+- Skills section now has: bars + tag cloud + interactive constellation visualization
+- Portfolio now has a full keyboard navigation + easter-egg stack: ⌘K command palette, ? keyboard help, G+key section jumps, t terminal easter egg
+- All verified working end-to-end, no console errors, lint clean
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Light/dark theme toggle (still the largest deferred item)
+- Replace AI-generated project images with real UI mockups (needs Akil's actual screenshots)
+- Add a "blog/notes" or "learning log" section (needs content source)
+- Add testimonials/endorsements if Akil gets real quotes
+- Consider a /api/og dynamic OG image route for per-section sharing
+- Add Konami code easter egg for an extra delight
+- Add a "share profile" button with copy-to-clipboard
+- Consider a subtle ambient sound toggle for the terminal easter egg

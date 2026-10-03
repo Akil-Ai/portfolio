@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionHeading } from "./section-heading";
+import { SkillsConstellation } from "./skills-constellation";
 import { skillCategories } from "@/lib/portfolio-data";
 import { cn } from "@/lib/utils";
 
@@ -125,6 +126,16 @@ export function Skills() {
               {tag}
             </span>
           ))}
+        </motion.div>
+
+        {/* Skills constellation visualization */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mt-8"
+        >
+          <SkillsConstellation className="h-[360px] sm:h-[400px]" />
         </motion.div>
       </div>
     </section>
