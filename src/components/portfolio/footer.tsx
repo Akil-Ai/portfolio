@@ -30,7 +30,7 @@ export function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition hover:border-emerald-400/40 hover:text-emerald-300"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-200 transition hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-300"
             >
               <Github className="h-4 w-4" />
             </a>
@@ -39,14 +39,14 @@ export function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition hover:border-emerald-400/40 hover:text-emerald-300"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-200 transition hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-300"
             >
               <Linkedin className="h-4 w-4" />
             </a>
             <a
               href={`mailto:${profile.email}`}
               aria-label="Email"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition hover:border-emerald-400/40 hover:text-emerald-300"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-200 transition hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-300"
             >
               <Mail className="h-4 w-4" />
             </a>
@@ -55,19 +55,19 @@ export function Footer() {
                 window.scrollTo({ top: 0, behavior: "smooth" })
               }
               aria-label="Back to top"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 transition hover:border-emerald-400/40 hover:text-emerald-300"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-200 transition hover:border-emerald-400/50 hover:bg-emerald-500/10 hover:text-emerald-300"
             >
               <ArrowUp className="h-4 w-4" />
             </button>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-white/5 pt-6 text-center sm:flex-row sm:text-left">
-          <p className="text-xs text-slate-500">
+        <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
+          <p className="text-xs text-slate-300">
             © {year} {profile.name}. Built with Next.js, Tailwind CSS & an
             in-house AI assistant.
           </p>
-          <p className="flex items-center gap-1.5 text-xs text-slate-500">
+          <p className="flex items-center gap-1.5 text-xs text-slate-300">
             Made with
             <Heart className="h-3.5 w-3.5 fill-emerald-400 text-emerald-400" />
             in Tamil Nadu, India

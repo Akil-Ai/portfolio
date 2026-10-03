@@ -7,10 +7,12 @@ import { Projects } from "@/components/portfolio/projects";
 import { Experience } from "@/components/portfolio/experience";
 import { Certifications } from "@/components/portfolio/certifications";
 import { Achievements } from "@/components/portfolio/achievements";
+import { BeyondWork } from "@/components/portfolio/beyond-work";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
 import { ScrollProgress } from "@/components/portfolio/scroll-progress";
 import { MarqueeStrip } from "@/components/portfolio/marquee-strip";
+import { CommandPalette } from "@/components/portfolio/command-palette";
 import { ChatbotWidget } from "@/components/chatbot-widget";
 
 function Divider() {
@@ -49,12 +51,16 @@ export default function Home() {
         <Divider />
         <Achievements />
         <Divider />
+        <BeyondWork />
+        <Divider />
         <Contact />
       </main>
       <Footer />
 
       {/* Floating AI chatbot */}
       <ChatbotWidget />
+      {/* Command palette (Cmd+K / Ctrl+K) */}
+      <CommandPalette />
     </div>
   );
 }

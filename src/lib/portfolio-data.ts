@@ -253,6 +253,51 @@ export const projects: Project[] = [
   },
 ];
 
+export type FunFact = {
+  emoji: string;
+  title: string;
+  description: string;
+};
+
+export const funFacts: FunFact[] = [
+  {
+    emoji: "🏆",
+    title: "2nd Prize — Code Fault Arena",
+    description:
+      "Debugged my way to a podium finish at VSB Engineering College's coding contest.",
+  },
+  {
+    emoji: "⌨️",
+    title: "Typewriting enthusiast",
+    description:
+      "Trained in typewriting — I type fast, think faster, and ship even faster.",
+  },
+  {
+    emoji: "🧠",
+    title: "NPTEL Elite",
+    description:
+      "Earned Elite-level recognition in national NPTEL courses — I love going deep on a topic.",
+  },
+  {
+    emoji: "🎧",
+    title: "Code + Lo-fi",
+    description:
+      "My best debugging happens with a lo-fi playlist on loop and a strong cup of filter coffee.",
+  },
+  {
+    emoji: "🌱",
+    title: "Always learning",
+    description:
+      "Right now: deep learning, data structures, and how LLMs actually reason under the hood.",
+  },
+  {
+    emoji: "🤝",
+    title: "Team player",
+    description:
+      "Led teams through hackathons and class projects — I believe the best code is written together.",
+  },
+];
+
 export type Certification = {
   title: string;
   issuer: string;

@@ -30,17 +30,74 @@ export const metadata: Metadata = {
     "Internship",
   ],
   authors: [{ name: "Akil S" }],
+  metadataBase: new URL("https://akil-portfolio.example.com"),
   openGraph: {
     title: "Akil S — AI & Data Science Engineer",
     description:
       "AI & Data Science student building trustworthy, explainable AI systems. Open to internships.",
-    type: "website",
+    type: "profile",
+    siteName: "Akil S Portfolio",
   },
   twitter: {
     card: "summary_large_image",
     title: "Akil S — AI & Data Science Engineer",
     description:
       "AI & Data Science student building trustworthy, explainable AI systems.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Akil S",
+  jobTitle: "AI & Data Science Student",
+  description:
+    "B.Tech Artificial Intelligence and Data Science student open to online internships. Builder of UAT-Lens-Ai and Rock-Guard AI.",
+  url: "https://akil-portfolio.example.com",
+  email: "mailto:akilrmhss@gmail.com",
+  telephone: "+91-9842651523",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Tirupur",
+    addressRegion: "Tamil Nadu",
+    addressCountry: "IN",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "VSB Engineering College",
+  },
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Data Science",
+    "Machine Learning",
+    "Python",
+    "Natural Language Processing",
+    "Generative AI",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/akil008",
+    "https://github.com/Akil-Ai",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Akil S — AI & Data Science Portfolio",
+  url: "https://akil-portfolio.example.com",
+  inLanguage: "en",
+  potentialAction: {
+    "@type": "ContactAction",
+    target: "mailto:akilrmhss@gmail.com",
   },
 };
 
@@ -51,6 +108,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >

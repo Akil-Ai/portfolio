@@ -198,17 +198,29 @@ export function About() {
                         {l.progress}%
                       </span>
                     </div>
-                    <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-800/80">
+                    <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-slate-800/80">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${l.progress}%` }}
                         transition={{
-                          duration: 1,
+                          duration: 1.1,
                           delay: 0.3,
                           ease: "easeOut",
                         }}
-                        className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"
-                      />
+                        className="relative h-full overflow-hidden rounded-full bg-gradient-to-r from-emerald-400 to-teal-500"
+                      >
+                        {/* Shimmer sweep */}
+                        <motion.span
+                          animate={{ x: ["-120%", "220%"] }}
+                          transition={{
+                            duration: 2.4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1.4,
+                          }}
+                          className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                        />
+                      </motion.div>
                     </div>
                   </div>
                 ))}

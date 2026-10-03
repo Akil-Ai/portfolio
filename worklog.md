@@ -214,3 +214,57 @@ Unresolved / Next-phase recommendations (for next webDevReview round):
 - Add a subtle entrance animation for the whole page on first load
 - Consider adding a "fun facts" or "beyond work" personal section for warmth
 - Add JSON-LD structured data (Person schema) for SEO
+
+---
+Task ID: 5
+Agent: webDevReview cron (round 3)
+Task: Assess project status, perform QA, fix bugs, add features & improve styling
+
+Work Log:
+- Read worklog (Tasks 1–4): portfolio stable, polish 9/10, 9 sections present, all round-1/2 fixes applied
+- QA via agent-browser: page loads `GET / 200`, no console errors/warnings (hooked console.error + console.warn), all 9 sections + 7 dividers + marquee present, chatbot POST 200
+- VLM desktop analysis confirmed round-2 recommendations still open: footer text contrast too low (slate-500), Currently Learning bars static (no shimmer), wanted more "life" in UI
+
+Fixes applied:
+- **Footer contrast fixed**: copyright + "Made with ❤️" text bumped slate-500 → slate-300; footer social icon buttons slate-300→slate-200 with stronger hover (border-emerald-400/50 + bg-emerald-500/10); border-white/5 → border-white/10
+- **Currently Learning shimmer**: added a moving white/40 gradient sweep across each progress bar (framer-motion x: -120%→220%, repeat Infinity, 2.4s), bar height bumped 1.5→2 for visibility
+- Improved footer GitHub icon button contrast to match the rest
+
+New features added:
+1. **JSON-LD structured data** (`layout.tsx`) — added two `<script type="application/ld+json">` blocks for SEO:
+   - `Person` schema: name, jobTitle, email, telephone, address (Tirupur, Tamil Nadu, IN), alumniOf (VSB Engineering College), knowsAbout (AI, DS, ML, Python, NLP, GenAI), sameAs (LinkedIn + GitHub)
+   - `WebSite` schema with ContactAction
+   - Also added `metadataBase`, `robots` (index/follow), OpenGraph `type: "profile"` + `siteName`
+   - Verified in DOM: 2 ld+json scripts present, types = [Person, WebSite]
+2. **BeyondWork section** (`beyond-work.tsx`) — NEW major section with 6 fun-fact cards (🏆 Code Fault Arena, ⌨️ Typewriting, 🧠 NPTEL Elite, 🎧 Code+Lo-fi, 🌱 Always learning, 🤝 Team player), each with hover lift + emoji wobble on hover + decorative glow, plus a closing CTA banner pointing to AKIL Bot. Added `funFacts[]` data model to portfolio-data.ts. Wired into page.tsx between Achievements and Contact.
+3. **CommandPalette** (`command-palette.tsx`) — Cmd+K / Ctrl+K command palette for power-user navigation:
+   - Opens with ⌘K/Ctrl+K, closes with Escape, background scrim with blur
+   - Searchable command list grouped by Navigate / Links / Actions
+   - Arrow keys (↑↓) to navigate, Enter to select, mouse hover sync
+   - Commands: jump to any section, open GitHub/LinkedIn, send email, download resume, scroll to top
+   - "Quick jump ⌘K" trigger badge fixed bottom-left (desktop only, lg:flex)
+   - Footer hint mentions AKIL Bot
+   - Verified: opens, filters "github"→1 result, closes with Escape, badge visible
+
+Verification:
+- `bun run lint` — clean (0 errors, 0 warnings)
+- Dev log: `✓ Compiled` + `GET / 200`
+- agent-browser DOM: 2 JSON-LD scripts (Person + WebSite), command palette opens with Ctrl+K, search filters correctly, Quick-jump badge visible
+- VLM desktop: footer contrast good, Currently Learning bars have shimmer/glow, BeyondWork section with 6 fun-fact cards present, Quick-jump ⌘K badge bottom-left — polish 9/10
+- VLM BeyondWork-specific: all 6 cards with correct emojis, hover lift, AKIL Bot closing line — 9/10
+
+Stage Summary:
+- 3 new features: JSON-LD SEO, BeyondWork section, CommandPalette (3 new component files + data model)
+- 3 fixes: footer contrast (text + icon buttons), learning-bar shimmer, polish maintained
+- Portfolio now has 10 distinct sections (Hero, About, Education, Skills, Projects, Experience, Certifications, Achievements, BeyondWork, Contact)
+- All verified working end-to-end, no console errors, lint clean, JSON-LD valid
+
+Unresolved / Next-phase recommendations (for next webDevReview round):
+- Light/dark theme toggle (still deferred — significant effort to convert hardcoded slate classes to CSS variables)
+- Add a subtle page-load entrance animation for the whole page
+- Project images are AI-generated stock-style; could be replaced with real UI mockups if Akil provides them
+- Add a "blog/notes" or "learning log" section (would need a content source)
+- Consider adding a subtle animated gradient background that shifts hue slowly
+- Add OpenGraph image (1200×630) for social sharing — currently no og:image
+- Consider a small "resume preview" modal triggered from the Download button
+- Add keyboard focus-visible rings polish for the command palette items
